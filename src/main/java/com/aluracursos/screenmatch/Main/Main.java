@@ -7,8 +7,10 @@ import com.aluracursos.screenmatch.services.ApiClient;
 import com.aluracursos.screenmatch.services.DataConverter;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
     private Scanner imput = new Scanner(System.in);
@@ -49,6 +51,19 @@ public class Main {
 
         // Utilizando funciones lambdas
         seasons.forEach(s -> s.episodes().forEach(e -> System.out.println("Nombre del episodio: " + e.title())));
+
+        // Convertir toda la informacion a una lista del tipo "DataEpisode"
+        List<DataEpisode> dataEpisodes = seasons.stream()
+                .flatMap(s -> s.episodes().stream())
+                .collect(Collectors.toUnmodifiableList());
+
+        // Top 5 episodeos
+        System.out.println("Top 5 mejores episodios");
+        dataEpisodes.stream()
+                .filter(e -> !e.rating().equalsIgnoreCase("N/A"))
+                .sorted(Comparator.comparing(DataEpisode::rating).reversed())
+                .limit(5)
+                .forEach(System.out::println);
     }
 
 }
