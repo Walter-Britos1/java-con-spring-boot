@@ -38,19 +38,17 @@ public class Main {
             seasons.add(dataSeason);
         }
 
-//        seasons.forEach(System.out::println);
-
         // Mostrar solo los titulos de los episodios para las temporadas
         // Utilizando bucles for
-//        for (int i = 0; i < data.totalSeasons(); i++) {
-//            List<DataEpisode> episodesSeason = seasons.get(i).episodes();
-//            for (int j = 0; j < episodesSeason.size(); j++) {
-//                System.out.println("Nombre del episodeo: " + episodesSeason.get(j).title());
-//            }
-//        }
+        for (int i = 0; i < data.totalSeasons(); i++) {
+            List<DataEpisode> episodesSeason = seasons.get(i).episodes();
+            for (int j = 0; j < episodesSeason.size(); j++) {
+                System.out.println("Nombre del episodio: " + episodesSeason.get(j).title());
+            }
+        }
 
         // Utilizando funciones lambdas
-        seasons.forEach(s -> s.episodes().forEach(e -> System.out.println("Nombre del episodeo: " + e.title())));
+        seasons.forEach(s -> s.episodes().forEach(e -> System.out.println("Nombre del episodio: " + e.title())));
     }
 
 }
