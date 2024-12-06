@@ -9,7 +9,7 @@ public class Episode {
     private String title;
     private Integer numberEpisode;
     private Double reating;
-    private LocalDate releaseData;
+    private LocalDate releaseDate;
 
     public Episode(Integer number, DataEpisode d) {
         this.season = number;
@@ -21,9 +21,9 @@ public class Episode {
             this.reating = 0.0;
         }
         try {
-            this.releaseData = LocalDate.parse(d.releaseDate());
+            this.releaseDate = LocalDate.parse(d.releaseDate());
         } catch (DateTimeParseException e) {
-            this.releaseData = null;
+            this.releaseDate = null;
         }
     }
 
@@ -59,12 +59,12 @@ public class Episode {
         this.reating = reating;
     }
 
-    public LocalDate getReleaseData() {
-        return releaseData;
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
     public void setReleaseData(LocalDate releaseData) {
-        this.releaseData = releaseData;
+        this.releaseDate = releaseData;
     }
 
     @Override
@@ -73,6 +73,6 @@ public class Episode {
                 ", title:' " + title + '\'' +
                 ", numberEpisode: " + numberEpisode +
                 ", reating: " + reating +
-                ", releaseData: " + releaseData;
+                ", releaseData: " + releaseDate;
     }
 }

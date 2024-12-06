@@ -7,6 +7,7 @@ import com.aluracursos.screenmatch.models.Episode;
 import com.aluracursos.screenmatch.services.ApiClient;
 import com.aluracursos.screenmatch.services.DataConverter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -73,6 +74,20 @@ public class Main {
                 .collect(Collectors.toList());
 
         episodes.forEach(System.out::println);
-    }
 
+        // Busqueda de episodios a partir de x año
+        System.out.println("Por favor ingrese el año de los episodios que desea ver");
+        var date = imput.nextInt();
+        imput.nextLine();
+
+        LocalDate searchDate = LocalDate.of(date, 1, 1);
+
+        episodes.stream()
+                .filter(e -> e.getReleaseDate() != null && e.getReleaseDate().isAfter(searchDate))
+                .forEach(e -> System.out.println(
+                        "Season: " + e.getSeason() +
+                                "\n Episode: " + e.getTitle() +
+                                "\n Release date: " + e.getReleaseDate()
+                ));
+    }
 }
