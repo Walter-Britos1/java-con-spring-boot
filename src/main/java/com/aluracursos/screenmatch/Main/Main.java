@@ -3,6 +3,7 @@ package com.aluracursos.screenmatch.Main;
 import com.aluracursos.screenmatch.models.DataEpisode;
 import com.aluracursos.screenmatch.models.DataSeason;
 import com.aluracursos.screenmatch.models.DataSeries;
+import com.aluracursos.screenmatch.models.Episode;
 import com.aluracursos.screenmatch.services.ApiClient;
 import com.aluracursos.screenmatch.services.DataConverter;
 
@@ -55,7 +56,7 @@ public class Main {
         // Convertir toda la informacion a una lista del tipo "DataEpisode"
         List<DataEpisode> dataEpisodes = seasons.stream()
                 .flatMap(s -> s.episodes().stream())
-                .collect(Collectors.toUnmodifiableList());
+                .collect(Collectors.toList());
 
         // Top 5 episodeos
         System.out.println("Top 5 mejores episodios");
@@ -64,6 +65,14 @@ public class Main {
                 .sorted(Comparator.comparing(DataEpisode::rating).reversed())
                 .limit(5)
                 .forEach(System.out::println);
+
+        // Convertir los datos en una lista de tipo Episode
+        List<Episode> episodes = seasons.stream()
+                .flatMap(t -> t.episodes().stream()
+                        .map(d -> new Episode(t.number(), d)))
+                .collect(Collectors.toList());
+
+        episodes.forEach(System.out::println);
     }
 
 }
