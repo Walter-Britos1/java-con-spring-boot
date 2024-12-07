@@ -10,5 +10,12 @@ public record DataEpisode(
         @JsonAlias("imdbRating") String rating,
         @JsonAlias("Released") String releaseDate
 ) {
-
+    @Override
+    public String toString() {
+        return
+                "title: " + title +
+                "\n numberEpisode: " + numberEpisode +
+                "\n rating: " + rating  +
+                "\n releaseDate: " + releaseDate;
+    }
 }

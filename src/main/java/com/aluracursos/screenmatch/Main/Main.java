@@ -73,7 +73,7 @@ public class Main {
                         .map(d -> new Episode(t.number(), d)))
                 .collect(Collectors.toList());
 
-        episodes.forEach(System.out::println);
+//        episodes.forEach(System.out::println);
 
         // Busqueda de episodios a partir de x año
         System.out.println("Por favor ingrese el año de los episodios que desea ver");
