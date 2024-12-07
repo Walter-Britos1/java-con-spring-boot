@@ -102,5 +102,13 @@ public class Main {
             System.out.println("El ipisodio no se pudo encontrar, intente nuevamente");
         }
 
+        // Creando estadisticas de temporadas
+        Map<Integer, Double> reatingForSeason = episodes.stream()
+                .filter(e -> e.getReating() > 0.0)
+                .collect(Collectors.groupingBy(Episode::getSeason,
+                        Collectors.averagingDouble(Episode::getReating)));
+
+        System.out.println(reatingForSeason);
+
     }
 }
