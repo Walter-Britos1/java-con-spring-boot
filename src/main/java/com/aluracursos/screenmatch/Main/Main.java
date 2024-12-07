@@ -8,10 +8,7 @@ import com.aluracursos.screenmatch.services.ApiClient;
 import com.aluracursos.screenmatch.services.DataConverter;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -89,5 +86,21 @@ public class Main {
                                 "\n Episode: " + e.getTitle() +
                                 "\n Release date: " + e.getReleaseDate()
                 ));
+
+        // Buscar episodio por titulo
+        System.out.println("Por favor ingrese el nombre del titulo que desea ver");
+        var searchTitle = imput.nextLine();
+
+        Optional<Episode> titleSought = episodes.stream()
+                .filter(e -> e.getTitle().toUpperCase().contains(searchTitle.toUpperCase()))
+                .findFirst();
+
+        if (titleSought.isPresent()) {
+            System.out.println("Episodio encontrado");
+            System.out.println("Datos del episodio: " + titleSought.get());
+        } else {
+            System.out.println("El ipisodio no se pudo encontrar, intente nuevamente");
+        }
+
     }
 }
