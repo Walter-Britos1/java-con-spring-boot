@@ -103,12 +103,12 @@ public class Main {
         }
 
         // Creando estadisticas de temporadas
-        Map<Integer, Double> reatingForSeason = episodes.stream()
-                .filter(e -> e.getReating() > 0.0)
+        Map<Integer, Double> ratingForSeason = episodes.stream()
+                .filter(e -> e.getRating() > 0.0)
                 .collect(Collectors.groupingBy(Episode::getSeason,
-                        Collectors.averagingDouble(Episode::getReating)));
+                        Collectors.averagingDouble(Episode::getRating)));
 
-        System.out.println(reatingForSeason);
+        System.out.println(ratingForSeason);
 
     }
 }

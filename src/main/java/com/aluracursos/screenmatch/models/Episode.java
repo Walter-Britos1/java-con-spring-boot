@@ -8,7 +8,7 @@ public class Episode {
     private Integer season;
     private String title;
     private Integer numberEpisode;
-    private Double reating;
+    private Double rating;
     private LocalDate releaseDate;
 
     public Episode(Integer number, DataEpisode d) {
@@ -16,9 +16,9 @@ public class Episode {
         this.title = d.title();
         this.numberEpisode = d.numberEpisode();
         try {
-            this.reating = Double.valueOf(d.rating());
+            this.rating = Double.valueOf(d.rating());
         }catch (NumberFormatException e) {
-            this.reating = 0.0;
+            this.rating = 0.0;
         }
         try {
             this.releaseDate = LocalDate.parse(d.releaseDate());
@@ -51,11 +51,11 @@ public class Episode {
         this.numberEpisode = numberEpisode;
     }
 
-    public Double getReating() {
+    public Double getRating() {
         return reating;
     }
 
-    public void setReating(Double reating) {
+    public void setRating(Double reating) {
         this.reating = reating;
     }
 
