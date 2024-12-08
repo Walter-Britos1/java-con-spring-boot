@@ -110,5 +110,14 @@ public class Main {
 
         System.out.println(ratingForSeason);
 
+
+        DoubleSummaryStatistics summaryStatistics = episodes.stream()
+                .filter(e -> e.getRating() > 0.0)
+                .collect(Collectors.summarizingDouble(Episode::getRating));
+
+        System.out.println("Evaluacion media de episodios: " + summaryStatistics.getAverage());
+        System.out.println("Episodio mejor evaluado: " + summaryStatistics.getMax());
+        System.out.println("Episodio peor evaluado: " + summaryStatistics.getMin());
+
     }
 }

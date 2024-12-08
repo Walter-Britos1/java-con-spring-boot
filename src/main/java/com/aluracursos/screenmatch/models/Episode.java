@@ -52,11 +52,11 @@ public class Episode {
     }
 
     public Double getRating() {
-        return reating;
+        return rating;
     }
 
     public void setRating(Double reating) {
-        this.reating = reating;
+        this.rating = reating;
     }
 
     public LocalDate getReleaseDate() {
@@ -72,7 +72,7 @@ public class Episode {
         return  "season: " + season +
                 ", title:' " + title + '\'' +
                 ", numberEpisode: " + numberEpisode +
-                ", reating: " + reating +
+                ", rating: " + rating +
                 ", releaseData: " + releaseDate;
     }
 }
