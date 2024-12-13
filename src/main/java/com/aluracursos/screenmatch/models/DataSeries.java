@@ -9,4 +9,10 @@ public record DataSeries(
         Integer totalSeasons,
         @JsonAlias("imdbRating") String ratings
 ) {
+    @Override
+    public String toString() {
+        return "title: " + title +
+                "\ntotalSeasons: " + totalSeasons +
+                "\nratings: " + ratings;
+    }
 }

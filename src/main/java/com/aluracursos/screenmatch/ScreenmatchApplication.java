@@ -2,7 +2,7 @@ package com.aluracursos.screenmatch;
 
 import com.aluracursos.screenmatch.Main.ExampleStream;
 import com.aluracursos.screenmatch.Main.Main;
-import org.springframework.boot.CommandLineRunner;56a
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
