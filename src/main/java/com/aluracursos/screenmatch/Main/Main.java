@@ -2,10 +2,12 @@ package com.aluracursos.screenmatch.Main;
 
 import com.aluracursos.screenmatch.models.DataSeason;
 import com.aluracursos.screenmatch.models.DataSeries;
+import com.aluracursos.screenmatch.models.Serie;
 import com.aluracursos.screenmatch.services.ApiClient;
 import com.aluracursos.screenmatch.services.DataConverter;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     private Scanner imput = new Scanner(System.in);
@@ -13,6 +15,7 @@ public class Main {
     private final String URL_BASE = "https://www.omdbapi.com/?t=";
     private final String API_KEY = "&apikey=e559a79d";
     private DataConverter converter = new DataConverter();
+    private List<DataSeries> dataSeries = new ArrayList<>();
 
     public void showMenu() {
         var option = -1;
@@ -36,7 +39,9 @@ public class Main {
                 case 2:
                     searchEpisodeOfSerie();
                     break;
-
+                case 3:
+                    showSerieSearched();
+                    break;
                 case 0:
                     System.out.println("Cerrando la aplicación...");
                     break;
@@ -69,6 +74,18 @@ public class Main {
     }
     private void searchSerieWeb() {
         DataSeries data = getDataSerie();
+        dataSeries.add(data);
         System.out.println(data);
     }
+
+    private void showSerieSearched() {
+        List<Serie> serieList = new ArrayList<>();
+        serieList = dataSeries.stream()
+                .map(s -> new Serie(s))
+                .collect(Collectors.toList());
+
+        serieList.stream()
+                .sorted(Comparator.comparing(Serie::getGenre))
+                .forEach(System.out::println);
     }
+}
