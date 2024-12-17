@@ -1,5 +1,7 @@
 package com.aluracursos.screenmatch.models;
 
+import com.aluracursos.screenmatch.services.ApiChatGTP;
+
 import java.util.Optional;
 import java.util.OptionalDouble;
 
@@ -17,6 +19,9 @@ public class Serie {
         this.totalSeasons = dataSeries.totalSeasons();
         this.ratings = OptionalDouble.of(Double.valueOf(dataSeries.ratings())).orElse(0);
         this.genre = Genre.fromString(dataSeries.genre().split(",")[0].trim());
+        // con traduccion
+//        this.synopsis = ApiChatGTP.transalte(dataSeries.synopsis());
+        // sin traduccion
         this.synopsis = dataSeries.synopsis();
         this.poster = dataSeries.poster();
         this.actors = dataSeries.actors();
