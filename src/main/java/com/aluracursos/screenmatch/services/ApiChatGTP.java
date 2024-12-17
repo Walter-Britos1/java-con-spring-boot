@@ -5,7 +5,7 @@ import com.theokanning.openai.service.OpenAiService;
 
 public class ApiChatGTP {
     public static String transalte(String text) {
-        final String API_KEY = "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";
+        final String API_KEY = "TU-API-KEY";
 
         OpenAiService service = new OpenAiService(API_KEY);
 
