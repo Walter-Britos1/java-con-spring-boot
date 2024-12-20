@@ -4,7 +4,7 @@ import com.theokanning.openai.completion.CompletionRequest;
 import com.theokanning.openai.service.OpenAiService;
 
 public class ApiChatGTP {
-    public static String transalte(String text) {
+    public static String translate(String text) {
         final String API_KEY = "TU-API-KEY";
 
         OpenAiService service = new OpenAiService(API_KEY);
@@ -13,7 +13,7 @@ public class ApiChatGTP {
                 .model("gpt-4o-mini")
                 .prompt("traduce a español el siguiente texto: " + text)
                 .maxTokens(1000)
-                .temperature(0.07)
+                .temperature(0.7)
                 .build();
 
         var response = service.createCompletion(request);

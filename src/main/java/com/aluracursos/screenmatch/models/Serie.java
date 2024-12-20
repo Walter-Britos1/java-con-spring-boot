@@ -20,7 +20,7 @@ public class Serie {
         this.ratings = OptionalDouble.of(Double.valueOf(dataSeries.ratings())).orElse(0);
         this.genre = Genre.fromString(dataSeries.genre().split(",")[0].trim());
         // con traduccion
-//        this.synopsis = ApiChatGTP.transalte(dataSeries.synopsis());
+        this.synopsis = ApiChatGTP.translate(dataSeries.synopsis());
         // sin traduccion
         this.synopsis = dataSeries.synopsis();
         this.poster = dataSeries.poster();
