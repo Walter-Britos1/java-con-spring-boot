@@ -1,18 +1,30 @@
 package com.aluracursos.screenmatch.models;
 
 import com.aluracursos.screenmatch.services.ApiChatGTP;
+import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
 
+@Entity
+@Table(name = "Series")
+
 public class Serie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
+    @Column(unique = true)
     private String title;
     private Integer totalSeasons;
     private Double ratings;
+    @Enumerated(EnumType.STRING)
     private Genre genre;
     private String synopsis;
     private String poster;
     private String actors;
+    @Transient
+    private List<Episode> episodes;
 
     public Serie(DataSeries dataSeries) {
         this.title = dataSeries.title();
@@ -36,6 +48,14 @@ public class Serie {
                 "\nSynopsis: " + synopsis +
                 "\nPoster: " + poster +
                 "\nActors: " + actors;
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
     }
 
     public String getTitle() {
