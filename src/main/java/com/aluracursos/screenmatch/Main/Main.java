@@ -3,6 +3,7 @@ package com.aluracursos.screenmatch.Main;
 import com.aluracursos.screenmatch.models.DataSeason;
 import com.aluracursos.screenmatch.models.DataSeries;
 import com.aluracursos.screenmatch.models.Serie;
+import com.aluracursos.screenmatch.repository.SerieRepository;
 import com.aluracursos.screenmatch.services.ApiClient;
 import com.aluracursos.screenmatch.services.DataConverter;
 
@@ -16,6 +17,11 @@ public class Main {
     private final String API_KEY = "&apikey=e559a79d";
     private DataConverter converter = new DataConverter();
     private List<DataSeries> dataSeries = new ArrayList<>();
+    private SerieRepository repository;
+
+    public Main(SerieRepository repository) {
+        this.repository = repository;
+    }
 
     public void showMenu() {
         var option = -1;
@@ -74,7 +80,9 @@ public class Main {
     }
     private void searchSerieWeb() {
         DataSeries data = getDataSerie();
-        dataSeries.add(data);
+        Serie serie = new Serie(data);
+        repository.save(serie);
+//        dataSeries.add(data);
         System.out.println(data);
     }
 
