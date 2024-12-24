@@ -12,6 +12,7 @@ import java.time.format.DateTimeParseException;
 public class Episode {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
     private Integer season;
     private String title;
     private Integer numberEpisode;
@@ -36,6 +37,14 @@ public class Episode {
         } catch (DateTimeParseException e) {
             this.releaseDate = null;
         }
+    }
+
+    public Serie getSerie() {
+        return serie;
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
     }
 
     public Integer getSeason() {
@@ -78,13 +87,6 @@ public class Episode {
         this.releaseDate = releaseData;
     }
 
-    public Serie getSerie() {
-        return serie;
-    }
-
-    public void setSerie(Serie serie) {
-        this.serie = serie;
-    }
 
     @Override
     public String toString() {

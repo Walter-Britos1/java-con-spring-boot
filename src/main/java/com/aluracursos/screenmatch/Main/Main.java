@@ -94,7 +94,7 @@ public class Main {
                             .map(e -> new Episode(d.number(), e)))
                     .collect(Collectors.toList());
 
-            serieFound.setTitle(episodeList.toString());
+            serieFound.setEpisodes(episodeList);
             repository.save(serieFound);
         }
 
