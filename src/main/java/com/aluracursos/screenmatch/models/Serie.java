@@ -1,10 +1,8 @@
 package com.aluracursos.screenmatch.models;
 
-import com.aluracursos.screenmatch.services.ApiChatGTP;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.OptionalDouble;
 
 @Entity
@@ -23,7 +21,7 @@ public class Serie {
     private String synopsis;
     private String poster;
     private String actors;
-    @Transient
+    @OneToMany(mappedBy = "serie")
     private List<Episode> episodes;
 
     public Serie() {}
