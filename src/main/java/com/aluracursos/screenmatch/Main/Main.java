@@ -1,9 +1,6 @@
 package com.aluracursos.screenmatch.Main;
 
-import com.aluracursos.screenmatch.models.DataSeason;
-import com.aluracursos.screenmatch.models.DataSeries;
-import com.aluracursos.screenmatch.models.Episode;
-import com.aluracursos.screenmatch.models.Serie;
+import com.aluracursos.screenmatch.models.*;
 import com.aluracursos.screenmatch.repository.SerieRepository;
 import com.aluracursos.screenmatch.services.ApiClient;
 import com.aluracursos.screenmatch.services.DataConverter;
@@ -35,6 +32,7 @@ public class Main {
                     3 - Mostrar series buscadas
                     4 - Buscar serie por nombre
                     5 - Ver el top 5 de mejores series
+                    6 - Buscar serie por genero
                                   
                     0 - Salir
                     """;
@@ -57,6 +55,9 @@ public class Main {
                     break;
                 case 5:
                     searchTop5Series();
+                    break;
+                case 6:
+                    searchSerieByGenre();
                     break;
                 case 0:
                     System.out.println("Cerrando la aplicación...");
@@ -141,5 +142,15 @@ public class Main {
         System.out.println("Top 5 mejores series:");
         top5Series.forEach(s ->
                 System.out.println("\nTitle: " + s.getTitle() + "\nRating: " + s.getRatings()));
+    }
+
+    private void searchSerieByGenre() {
+        System.out.println("¿Por que genero desea buscar?");
+        var serieGenre = input.nextLine();
+        var genre = Genre.fromEspanol(serieGenre);
+
+        List<Serie> serieByGenre = repository.findByGenre(genre);
+        System.out.println("Las series con el genero '" + serieGenre + "', son: ");
+        serieByGenre.forEach(System.out::println);
     }
 }
