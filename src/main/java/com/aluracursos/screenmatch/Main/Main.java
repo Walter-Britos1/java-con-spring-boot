@@ -34,6 +34,7 @@ public class Main {
                     5 - Ver el top 5 de mejores series
                     6 - Buscar serie por genero
                     7 - Filtrar series por evaluacion y temporadas
+                    8 - Buscar capitulos por titulo
                                   
                     0 - Salir
                     """;
@@ -62,6 +63,9 @@ public class Main {
                     break;
                 case 7:
                     filterSeriesByRatingAndSeasons();
+                    break;
+                case 8:
+                    searchEpisodeByTitle();
                     break;
                 case 0:
                     System.out.println("Cerrando la aplicación...");
@@ -170,5 +174,15 @@ public class Main {
         System.out.println("\n*** Series encontradas ***");
         filterSeries.forEach(s ->
                 System.out.println(s.getTitle() + " - Rating: " + s.getRatings()));
+    }
+
+    private void searchEpisodeByTitle(){
+        System.out.println("Escriba el nombre del capitulo que desea buscar");
+        var titleEpisode = input.nextLine();
+
+        List<Episode> episodesByTitle = repository.searchEpisodeByTitle(titleEpisode);
+        episodesByTitle.forEach(e ->
+                System.out.printf("\nSerie: %s Temporadas: %s Episodio: %s Evaluacion: %s",
+                        e.getSerie(), e.getSeason(), e.getNumberEpisode(), e.getRating()));
     }
 }
