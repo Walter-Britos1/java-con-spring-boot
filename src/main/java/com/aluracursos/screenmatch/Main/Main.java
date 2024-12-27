@@ -33,6 +33,7 @@ public class Main {
                     4 - Buscar serie por nombre
                     5 - Ver el top 5 de mejores series
                     6 - Buscar serie por genero
+                    7 - Filtrar series por evaluacion y temporadas
                                   
                     0 - Salir
                     """;
@@ -58,6 +59,9 @@ public class Main {
                     break;
                 case 6:
                     searchSerieByGenre();
+                    break;
+                case 7:
+                    filterSeriesByRatingAndSeasons();
                     break;
                 case 0:
                     System.out.println("Cerrando la aplicación...");
@@ -152,5 +156,19 @@ public class Main {
         List<Serie> serieByGenre = repository.findByGenre(genre);
         System.out.println("Las series con el genero '" + serieGenre + "', son: ");
         serieByGenre.forEach(System.out::println);
+    }
+
+    private void filterSeriesByRatingAndSeasons() {
+        System.out.println("¿Por cuantas temporadas desea filtrar las series?");
+        var totalSeasons = input.nextInt();
+        input.nextLine();
+        System.out.println("¿Que evaluacion debe tener la serie?");
+        var ratings = input.nextDouble();
+        input.nextLine();
+
+        List<Serie> filterSeries = repository.seriesBySeasonAndRatings(totalSeasons, ratings);
+        System.out.println("\n*** Series encontradas ***");
+        filterSeries.forEach(s ->
+                System.out.println(s.getTitle() + " - Rating: " + s.getRatings()));
     }
 }
