@@ -3,6 +3,7 @@ package com.aluracursos.screenmatch.dto;
 import com.aluracursos.screenmatch.models.Genre;
 
 public record SerieDTO(
+        Long id,
         String title,
         Integer totalSeasons,
         Double ratings,
