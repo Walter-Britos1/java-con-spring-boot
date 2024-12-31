@@ -72,13 +72,13 @@ function cargarInfoSerie() {
     getDatos(`/series/${serieId}`)
         .then(data => {
             fichaDescripcion.innerHTML = `
-                <img src="${data.poster}" alt="${data.titulo}" />
+                <img src="${data.poster}" alt="${data.title}" />
                 <div>
-                    <h2>${data.titulo}</h2>
+                    <h2>${data.title}</h2>
                     <div class="descricao-texto">
-                        <p><b>Média de evaluaciones:</b> ${data.evaluacion}</p>
-                        <p>${data.sinopsis}</p>
-                        <p><b>Actores:</b> ${data.actores}</p>
+                        <p><b>Rating:</b> ${data.ratings}</p>
+                        <p>${data.synopsis}</p>
+                        <p><b>Actors:</b> ${data.actors}</p>
                     </div>
                 </div>
             `;
