@@ -3,6 +3,7 @@ package com.aluracursos.screenmatch.services;
 import com.aluracursos.screenmatch.dto.EpisodeDTO;
 import com.aluracursos.screenmatch.dto.SerieDTO;
 import com.aluracursos.screenmatch.models.Episode;
+import com.aluracursos.screenmatch.models.Genre;
 import com.aluracursos.screenmatch.models.Serie;
 import com.aluracursos.screenmatch.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,5 +82,10 @@ public class SerieServices {
                         e.getTitle(),
                         e.getNumberEpisode()
                 )).collect(Collectors.toList());
+    }
+
+    public List<SerieDTO> getSeriesByCategry(String nombreGenero) {
+        Genre genre = Genre.fromEspanol(nombreGenero);
+        return dataConverter(repository.findByGenre(genre));
     }
 }
