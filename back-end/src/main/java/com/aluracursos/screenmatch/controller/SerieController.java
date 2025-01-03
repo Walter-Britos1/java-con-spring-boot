@@ -2,6 +2,7 @@ package com.aluracursos.screenmatch.controller;
 
 import com.aluracursos.screenmatch.dto.EpisodeDTO;
 import com.aluracursos.screenmatch.dto.SerieDTO;
+import com.aluracursos.screenmatch.models.Episode;
 import com.aluracursos.screenmatch.services.SerieServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,4 +45,8 @@ public class SerieController {
         return services.getAllSeason(id);
     }
 
+    @GetMapping("/{id}/temporadas/{numeroTemporada}")
+    public List<EpisodeDTO> getSeasonByNumber(@PathVariable Long id, @PathVariable Long numeroTemporada) {
+        return services.getSeasonByNumber(id, numeroTemporada);
+    }
 }

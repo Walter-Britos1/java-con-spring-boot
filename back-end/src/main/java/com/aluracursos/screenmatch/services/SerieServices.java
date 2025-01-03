@@ -2,6 +2,7 @@ package com.aluracursos.screenmatch.services;
 
 import com.aluracursos.screenmatch.dto.EpisodeDTO;
 import com.aluracursos.screenmatch.dto.SerieDTO;
+import com.aluracursos.screenmatch.models.Episode;
 import com.aluracursos.screenmatch.models.Serie;
 import com.aluracursos.screenmatch.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,5 +72,14 @@ public class SerieServices {
             )).collect(Collectors.toList());
         }
         return null;
+    }
+
+    public List<EpisodeDTO> getSeasonByNumber(Long id, Long numeroTemporada) {
+        return repository.getSeasonByNumber(id, numeroTemporada).stream()
+                .map(e -> new EpisodeDTO(
+                        e.getSeason(),
+                        e.getTitle(),
+                        e.getNumberEpisode()
+                )).collect(Collectors.toList());
     }
 }
